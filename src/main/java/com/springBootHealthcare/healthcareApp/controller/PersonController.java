@@ -5,6 +5,7 @@ import com.springBootHealthcare.healthcareApp.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -15,36 +16,36 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping("/person")
-    public Person createPerson(@RequestBody Person person){
+    public boolean createPerson(@RequestBody Person person) throws SQLException {
         System.out.println("inside the controller: "+person);
-        return personService.createPerson(person);
+        return personService.createPerson();
     }
 
-    @GetMapping("/person")
-    public List<Person> retrieveAllPerson(){
+    @GetMapping("/persons")
+    public List<Person> retrieveAllPerson() throws SQLException {
         return personService.retrieveAllPerson();
     }
 
-    @GetMapping("/person/{personId}")
-    public Person retrieveById(@PathVariable("personId") int personId){
+    @GetMapping("/persons/{personId}")
+    public List<Person> retrieveById(@PathVariable("personId") int personId) throws SQLException {
         return personService.retrieveById(personId);
     }
 
     @DeleteMapping("/person/{personId}")
-    public Person deletePerson(@PathVariable("personId") int personId){
+    public boolean deletePerson(@PathVariable("personId") int personId){
         return personService.deletePerson(personId);
     }
 
     // when we need to update some attributes not all then we use @Patchmapping
-    @PatchMapping
-    public Person updatePerson(@PathVariable ("personId,firstName")int personId,String firstName) {
-        return personService.updatePerson(personId, firstName);
-    }
+//    @PatchMapping
+//    public Person updatePerson(@PathVariable ("personId,firstName")int personId,String firstName) {
+//        return personService.updatePerson(personId, firstName);
+//    }
 
     // when we need to update all attributes then we use @Putmapping
-    //    @PutMapping
-    //    public Person updatePerson ( @PathVariable("personId,firstName") int personId, String firstName){
-    //      return personService.updatePerson(personId, firstName);
-    //    }
+        @PutMapping
+        public boolean updatePerson ( @PathVariable("personId,firstName") int personId, String firstName) throws SQLException {
+          return personService.updatePerson(personId, firstName);
+        }
 
 }
