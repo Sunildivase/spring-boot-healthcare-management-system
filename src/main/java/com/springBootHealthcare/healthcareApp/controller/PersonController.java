@@ -21,12 +21,12 @@ public class PersonController {
         return personService.createPerson();
     }
 
-    @GetMapping("/persons")
+    @GetMapping("/person")
     public List<Person> retrieveAllPerson() throws SQLException {
         return personService.retrieveAllPerson();
     }
 
-    @GetMapping("/persons/{personId}")
+    @GetMapping("/person/{personId}")
     public List<Person> retrieveById(@PathVariable("personId") int personId) throws SQLException {
         return personService.retrieveById(personId);
     }
@@ -43,7 +43,7 @@ public class PersonController {
 //    }
 
     // when we need to update all attributes then we use @Putmapping
-        @PutMapping
+        @PutMapping("/person/{personId}")
         public boolean updatePerson ( @PathVariable("personId,firstName") int personId, String firstName) throws SQLException {
           return personService.updatePerson(personId, firstName);
         }

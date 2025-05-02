@@ -1,4 +1,16 @@
 package com.springBootHealthcare.healthcareApp.model;
 
-public record Hospital(int hospitalId,String hospitalName,String address,String emailId,String contactNo) {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Hospital {
+    private int hospitalId;
+    private String hospitalName;
+    private String address;
+    private String emailId;
+    private String contactNo;
 }

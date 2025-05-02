@@ -1,4 +1,15 @@
 package com.springBootHealthcare.healthcareApp.model;
 
-public record Department(int deptId,String deptName,int hospitalId,int doctorId) {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Department {
+    private int deptId;
+    private String deptName;
+    private int hospitalId;
+    private int doctorId;
 }
