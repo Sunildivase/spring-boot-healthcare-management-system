@@ -46,8 +46,8 @@ public class DepartmentController {
 
     // when we need to update all attributes then we use @Putmapping
     @PutMapping("/department/{deptId}")
-    public boolean updateDepartment ( @PathVariable("deptId,deptName") int deptId, String deptName) throws SQLException {
-        return departmentService.updateDepartment(deptId, deptName);
+    public Department updateDepartment ( @PathVariable("deptId") int deptId, @RequestBody Department department) throws SQLException {
+        return departmentService.updateDepartment(deptId, department);
     }
 
 }

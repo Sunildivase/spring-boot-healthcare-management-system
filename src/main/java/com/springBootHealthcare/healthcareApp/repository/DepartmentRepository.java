@@ -116,19 +116,19 @@ public class DepartmentRepository {
         return departmentList;
     }
 
-    public boolean updateDepartment(int deptId,String deptName) throws SQLException {
+    public Department updateDepartment(int deptId,Department department) throws SQLException {
 
         this.initConnection();
 
         String query = "UPDATE department SET deptName=? WHERE deptId=?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, deptName);
+            preparedStatement.setString(1, String.valueOf(department));
             preparedStatement.setInt(2, deptId);
 
             int rowUpdated = preparedStatement.executeUpdate();
 
-            return rowUpdated > 0;
+            return department;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -65,16 +65,17 @@ public class DepartmentService {
         return departmentList;
     }
 
-    public boolean updateDepartment(int deptId,String deptName) throws SQLException {
+    public Department updateDepartment(int deptId,Department department) throws SQLException {
 
-        boolean deptUpdated = departmentRepository.updateDepartment(deptId, deptName);
+        int departmentToBeUpdated = department.getDeptId();
+        String updatedDepartment = department.getDeptName();
 
-        if (deptUpdated) {
+        if (updatedDepartment.isBlank() && updatedDepartment.isEmpty()) {
             System.out.println("department updated successfully ");
         } else {
             System.out.println("Failed to update department");
         }
-        return deptUpdated;
+        return department;
     }
 
     public boolean deleteDepartment(int deptId){
