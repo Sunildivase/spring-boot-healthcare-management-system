@@ -76,16 +76,17 @@ public class DoctorService {
         return doctorList;
     }
 
-    public boolean updateDoctor(int doctorId,String firstName) throws SQLException {
+    public Doctor updateDoctor(int doctorId,Doctor doctor) throws SQLException {
 
-        boolean doctorUpdated = doctorRepository.updateDoctor(doctorId, firstName);
+        int doctorToBeUpdated = doctor.getDoctorId();
+        String updatedDoctor = doctor.getFirstName();
 
-        if (doctorUpdated) {
+        if (updatedDoctor.isBlank() && updatedDoctor.isEmpty()) {
             System.out.println("doctor updated successfully ");
         } else {
             System.out.println("Failed to update doctor");
         }
-        return doctorUpdated;
+        return doctor;
     }
 
     public boolean deleteDoctor(int doctorId){

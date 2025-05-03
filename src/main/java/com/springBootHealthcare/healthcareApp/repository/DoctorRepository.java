@@ -124,19 +124,19 @@ public class DoctorRepository {
         return doctorList;
     }
 
-    public boolean updateDoctor(int doctorId,String firstName) throws SQLException {
+    public Doctor updateDoctor(int doctorId,Doctor doctor) throws SQLException {
 
         this.initConnection();
 
         String query = "UPDATE doctor SET firstName=? WHERE doctorId=?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(1, String.valueOf(doctor));
             preparedStatement.setInt(2, doctorId);
 
             int rowUpdated = preparedStatement.executeUpdate();
 
-            return rowUpdated > 0;
+            return doctor;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

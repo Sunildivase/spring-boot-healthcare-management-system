@@ -8390,3 +8390,5 @@ com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long
 03-05-2025 13:05:21.367 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
 03-05-2025 13:05:21.367 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 0 ms
 03-05-2025 13:05:21.432 [http-nio-8081-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+03-05-2025 13:10:30.323 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown.shutDownGracefully - Commencing graceful shutdown. Waiting for active requests to complete
+03-05-2025 13:10:30.344 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown.doShutdown - Graceful shutdown complete
