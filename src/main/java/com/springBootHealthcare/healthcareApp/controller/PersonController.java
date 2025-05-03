@@ -2,6 +2,7 @@ package com.springBootHealthcare.healthcareApp.controller;
 
 import com.springBootHealthcare.healthcareApp.model.Person;
 import com.springBootHealthcare.healthcareApp.service.PersonService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,8 +45,8 @@ public class PersonController {
 
     // when we need to update all attributes then we use @Putmapping
         @PutMapping("/person/{personId}")
-        public boolean updatePerson ( @PathVariable("personId,firstName") int personId, String firstName) throws SQLException {
-          return personService.updatePerson(personId, firstName);
+        public Person updatePerson ( @PathVariable("personId") int personId, @RequestBody Person person) throws SQLException {
+          return personService.updatePerson(personId, person);
         }
 
 }

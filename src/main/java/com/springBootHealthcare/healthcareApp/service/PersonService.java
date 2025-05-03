@@ -88,16 +88,17 @@ public class PersonService {
         return personList;
     }
 
-    public boolean updatePerson(int personId,String firstName) throws SQLException {
+    public Person updatePerson(int personId,Person person) throws SQLException {
 
-        boolean personUpdated = personRepository.updatePerson(personId, firstName);
+        int personToBeUpdated = person.getPersonId();
+        String updatedPerson = person.getFirstName();
 
-        if (personUpdated) {
+        if (updatedPerson.isBlank() && updatedPerson.isEmpty()) {
             System.out.println("person updated successfully ");
         } else {
             System.out.println("Failed to update person");
         }
-       return personUpdated;
+       return person;
     }
 
     public boolean deletePerson(int personId){

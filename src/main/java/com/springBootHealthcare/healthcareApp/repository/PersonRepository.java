@@ -130,19 +130,19 @@ public class PersonRepository {
         return personList;
     }
 
-    public boolean updatePerson(int personId,String firstName) throws SQLException {
+    public Person updatePerson(int personId,Person person) throws SQLException {
 
         this.initConnection();
 
         String query = "UPDATE person SET firstName=? WHERE personId=?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(1, String.valueOf(person));
             preparedStatement.setInt(2, personId);
 
             int rowUpdated = preparedStatement.executeUpdate();
 
-            return rowUpdated > 0;
+            return person;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
