@@ -46,8 +46,8 @@ public class HospitalController {
 
     // when we need to update all attributes then we use @Putmapping
     @PutMapping("/hospital/{hospitalId}")
-    public boolean updateHospital ( @PathVariable("hospitalId,hospitalName") int hospitalId, String hospitalName) throws SQLException {
-        return hospitalService.updateHospital(hospitalId, hospitalName);
+    public Hospital updateHospital ( @PathVariable("hospitalId") int hospitalId, @RequestBody Hospital hospital) throws SQLException {
+        return hospitalService.updateHospital(hospitalId, hospital);
     }
 
 }

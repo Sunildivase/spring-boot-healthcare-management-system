@@ -67,16 +67,17 @@ public class HospitalService {
         return hospitalList;
     }
 
-    public boolean updateHospital(int hospitalId,String hospitalName) throws SQLException {
+    public Hospital updateHospital(int hospitalId,Hospital hospital) throws SQLException {
 
-        boolean hospitalUpdated = hospitalRepository.updateHospital(hospitalId, hospitalName);
+        int hospitalToBeUpdated = hospital.getHospitalId();
+        String updatedHospital = hospital.getHospitalName();
 
-        if (hospitalUpdated) {
+        if (updatedHospital.isBlank() && updatedHospital.isEmpty()) {
             System.out.println("hospital updated successfully ");
         } else {
             System.out.println("Failed to update hospital");
         }
-        return hospitalUpdated;
+        return hospital;
     }
 
     public boolean deleteHospital(int hospitalId){
