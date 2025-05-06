@@ -1,47 +1,17 @@
 # spring-boot-healthcare-management-system
 spring boot project
 
-Introduction
-
-Features
-
-Technologies Used
-
-Getting Started
-
-Installation
-
-Usage
-
-Contributing
-
-Contact
-
-Code Structure
-
-Functionality
-
-Database Schema (POJO Classes)
-
 ## Introduction
-🚀 Project Overview The spring-boot-healthcare-management-system is a Java-based web application built using Servlet and JSP technologies. It simulates real-world operations such as user registration, ride booking, driver management, payment processing, and driver rating functionalities. This project serves as a hands-on approach to understanding full-stack Java development while applying core concepts like JDBC, MVC, and OOP design principles.
+🚀 Project Overview The spring-boot-healthcare-management-system is a Java-based web application built using Servlet and JSP technologies. It simulates real-world operations such as user registration, patient booking, doctor management, appointment booking, and appointment booking functionalities. This project serves as a hands-on approach to understanding full-stack Java development while applying core concepts like JDBC, MVC, and OOP design principles.
 
 ## Features
-Key Features 👤 customer,Doctor & hospital Registration
+Key Features 👤 customer, 👨🏻‍⚕️ Doctor,🏥 hospital Registration & 📅appointment.
 
 Register and manage both customer and doctor accounts seamlessly.
 
-appointment booking
+📅 appointment booking
 
-Book rides by selecting pickup and drop locations, calculate fare, and assign drivers automatically.
-
-💳 Payment Processing
-
-Securely process ride payments and manage payment history.
-
-⭐ Ratings & Reviews
-
-Rate drivers post-ride with rating and optional feedback.
+Book appointment by selecting 👤 customer,👨🏻‍⚕️ Doctor & 🏥 hospital automatically.
 
 🗃️ CRUD Operations
 
@@ -49,7 +19,7 @@ Perform Create, Read, Update, and Delete operations on all modules.
 
 📈 Admin Dashboard
 
-Monitor rides, payments, users, and driver activity.
+Customer, Doctor, Hospital,Department,Apointment,Billing,Prescription activity.
 
 ## Technologies Used
 🛠️ Stack
@@ -76,20 +46,20 @@ Git – Version control
 💡 Installation and Setup
 
 ## Prerequisites
-Java JDK 21+
+Java JDK 21
 
-Apache Tomcat 10+
+Apache Tomcat 10
 
-MYSQL 8+
+MYSQL 8
 
-Maven 3.8+
+Maven 3.8
 
-IDE (Eclipse/IntelliJ)
+IDE (IntelliJ)
 
 Git (optional)
 
 ## Setup MySQL Database
-CREATE DATABASE cab_management; USE cab_management;
+CREATE DATABASE healthcareDatat; USE healthcaredata;
 
 ## Configure Your MySQL Connection
 jdbc.url=jdbc:mysql://localhost:3306/cab_management jdbc.username=root jdbc.password=your_password jdbc.driver=com.mysql.cj.jdbc.Driver
@@ -101,19 +71,14 @@ Run the file to launch the application.
 
 Build the project mvn clean install Deploy to Tomcat Server Place the .war file in the webapps folder and start the server.
 
-## Start Tomcat
-Start the Tomcat server and access the application at http://localhost:8080/servlet-cab-booking.
-
 ## Usage
-User Registration & Login
+Customer Registration & Login
 
-Book a Ride
+Book a Appointment
 
-Assign Driver & View Ride Details
+Assign Doctor & Hospital Details
 
-Make a Payment
-
-Rate a Driver
+Make a bill
 
 Admin Access to Monitor Activities
 
@@ -121,13 +86,156 @@ Admin Access to Monitor Activities
 Contributions are welcome! Open an issue or submit a pull request. For major changes, please open a discussion first.
 
 ## Functionality
-User
+Customer
 
-Driver
+Doctor
 
-Ride
+Hospital
 
-Payment
+Department
 
-Rating
+Appointment
+
+Prescription
+
+Billing
+
+# Package Structure
+* com.healthcareApp Contains the main application logic (healthcareApp.java)
+* * com.healthcareApp.controller: includes all the controller classes:
+  * PersonController.java
+  * DoctoController.java
+  * HospitalController.java
+  * DepartmentController.java
+  * AppointmentController.java
+  * PrescriptionController.java
+  * BillingController.java
+* com.helathcareApp.model: includes all the model classes:
+  * Person.java
+  * Doctor.java
+  * Hospital.java
+  * Department.java
+  * Appointment.java
+  * Prescription.java
+  * Billing.java
+* com.healthcareApp.service: includes all the service classes and interfaces:
+   * PersonService.java
+   * DoctorService.java
+   * HospitalService.java
+   * DepartmentService.java
+   * AppointmentService.java
+   * PrescriptionService.java
+   * BillingService.java
+   * ConnectionService.java
+     
+ # Class Diagram
+```mermaid
+---
+title: healthcare management system
+---
+classDiagram
+
+ note " This is generally appointment booking for health services"
+
+ class Person
+ Person : +int personId
+ Person : +String firstname
+ Person : +String lastName
+ Person : +int age
+ Person : +String gender
+ Person : +Long contactNo
+ Person : +Long alternateMobile
+ Person : +String address
+
+class Person{
+ +createPerson()
+ +displayPerson()
+}
+
+ 
+
+Doctor: +int doctorId
+Doctor: +String firstName
+Doctor: +String lastName
+Doctor: +int age
+Doctor: +String gender
+Doctor: +String contactNo
+Doctor: +String speciality
+Doctor: +int experience
+
+class Doctor{
+ +createDoctor()
+ +displayDoctor()
+}
+
+
+Hospital: +int hospitalId
+Hospital: +String hospitalName
+Hospital: +String address
+Hospital: +Long contactNo
+Hospital: +String emailId
+
+class Hospital{
++createHospital()
++displayHospital()
+}
+
+Department: +int deptId
+Department: +String deptName
+Department: +doctorId
+Department: +hosptitalId
+
+class Department{
++createDepartment()
++displayDepartment()
+}
+
+Hospital <-- Department : Association
+Doctor  <-- Department  : Assocciation
+
+Appointment: +int appointmentId
+Appointment: +int personId
+Appointment: +int doctorId
+Appointment: +int hospitalId
+Appointment: +int deptId
+
+class Appointment{
++createAppointment()
++displayAppointment()
+
+}
+
+
+Appointment --> Person : Association
+Appointment --> Doctor : Association
+Appointment --> Hospital : Association
+Appointment --> Department : Association
+
+Prescription : +int prescriptionId
+Prescription : +String prescriptionDetails
+Prescription : +int personId
+
+class Prescription{
++createPrescription()
++displayPrescription()
+}
+
+Prescription --> Person : Association
+
+Billing : +int billId
+Billing : +int bill
+Billing : +int totalBill
+Billing : +int personId
+
+class Billing{
++createBilling()
++displayBilling()
+}
+
+Billing --> Person : Association
+
+```
+
+
+
 
