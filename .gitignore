@@ -21,8 +21,12 @@ target/
 .mvn
 logs
 mvnw.cmd
+<<<<<<< HEAD
 mvnw
 
+=======
+.mvn/wrapper
+>>>>>>> 7637fd1d7713c0fd77f496e4ccc60fef723bf9e6
 
 ### NetBeans ###
 /nbproject/private/
