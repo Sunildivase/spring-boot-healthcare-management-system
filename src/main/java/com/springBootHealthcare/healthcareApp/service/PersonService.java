@@ -1,5 +1,8 @@
 package com.springBootHealthcare.healthcareApp.service;
 
+import com.springBootHealthcare.healthcareApp.Exception.AgeNotFoundException;
+import com.springBootHealthcare.healthcareApp.Exception.ContactNoException;
+import com.springBootHealthcare.healthcareApp.Exception.PersonNotFoundException;
 import com.springBootHealthcare.healthcareApp.model.Person;
 import com.springBootHealthcare.healthcareApp.repository.PersonRepository;
 import lombok.AllArgsConstructor;
@@ -26,8 +29,17 @@ public class PersonService {
 
     public boolean createPerson() throws SQLException {
 
+        int personId;
         System.out.println("please enter personId");
-        int personId = Integer.parseInt(scanner.nextLine());
+
+        try{
+            personId=Integer.parseInt(scanner.nextLine());
+        }catch (NumberFormatException e){
+            throw new NumberFormatException("please enter valid input");
+        }
+        if(personId<0) {
+            throw new PersonNotFoundException("please enter valid input");
+        }
 
         System.out.println("please enter type");
         String type = scanner.nextLine();
@@ -38,17 +50,50 @@ public class PersonService {
         System.out.println("please enter lastName");
         String lastName = scanner.nextLine();
 
+        int age;
         System.out.println("please enter age");
-        int age = Integer.parseInt(scanner.nextLine());
+        try {
+            age = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("enter valid input");
+        }
+
+        if(age < 0){
+            throw new AgeNotFoundException("invalid age");
+        }
 
         System.out.println("please enter gender");
         String gender = scanner.nextLine();
 
         System.out.println("please enter contactNo");
-        String contactNo = scanner.nextLine();
+        String contactNo;
+
+        try{
+            contactNo = scanner.nextLine();
+        }catch (NumberFormatException e){
+            throw new NumberFormatException("enter valid input");
+        }
+
+        if(Long.parseLong(contactNo) != 10){
+
+        }else {
+            throw new ContactNoException("enter valid contact");
+        }
 
         System.out.println("please enter alternateMobile");
-        String  alternateMobile = scanner.nextLine();
+        String alternateMobile;
+
+        try{
+            alternateMobile = scanner.nextLine();
+        }catch (NumberFormatException e){
+            throw new NumberFormatException("enter valid alternateMobile");
+        }
+
+        if(Long.parseLong(alternateMobile) != 10){
+
+        }else {
+            throw new ContactNoException("enter valid alternateMobile");
+        }
 
         System.out.println("please enter address");
         String address = scanner.nextLine();
